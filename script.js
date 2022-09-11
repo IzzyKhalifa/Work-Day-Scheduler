@@ -16,7 +16,9 @@ function classSelection(hour) {
 }
 
 function save(event) {
-  console.log(`#${event.data.hour} memo saved`);
+  const memo = localStorage.memo ? JSON.parse(localStorage.memo) : {};
+  memo[event.data.hour] = $(`#${event.data.hour}`)[0].value;
+  localStorage.setItem("memo", JSON.stringify(memo));
 }
 
 for (var i = minHour; i <= maxHour; i += 1) {
